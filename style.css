@@ -25,20 +25,5 @@ body {
     line-height:1.3em;
 }
 
-#showdiv {
-    position: absolute;
-    top:53px;
-    left:13px;
-    width:200px;
-    background-color:#f3efe9;
-    padding:10px;
-    font-family: Arial, sans-serif;
-    font-size:12px;
-    border: 1px solid white;
-    line-height:1.3em;
-	z-index:100;
-	display:none;
-}
-
 
 #legend p {clear:both; margin:5px 0 0 0;}
