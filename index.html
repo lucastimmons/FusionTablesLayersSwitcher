@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Layer switcher</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+  <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" /> 
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+
+<script type="text/javascript">
+
+
+function initialize() {
+	var myLatLng = new google.maps.LatLng(10.75876, -85.37543);
+	
+	map = new google.maps.Map(document.getElementById('map_canvas'), {
+      center: myLatLng,
+      zoom: 11,
+	  panControl: false,
+  	zoomControl: true,
+	zoomControlOptions: {
+        position: google.maps.ControlPosition.LEFT_CENTER
+    },
+  	mapTypeControl: false,
+      mapTypeId: 'roadmap'
+    });
+	
+	var tableid1 = '1-941Px73b_XWWn3pmPHKp6WhbbSVNiEmKMadwe0'
+	var tableid2 = '1-941Px73b_XWWn3pmPHKp6WhbbSVNiEmKMadwe0'
+	
+	layer1 = new google.maps.FusionTablesLayer(tableid1);
+	layer2 = new google.maps.FusionTablesLayer(tableid2);	
+	
+	layer1.setQuery("SELECT latitude FROM " + tableid1);
+	layer2.setQuery("SELECT latitude FROM " + tableid2);
+
+
+}
+
+
+
+function changeLayer(tableidselections) {
+
+	if (tableidselections == 1){
+		 if (document.getElementById("1").checked == true) {
+		   if(layer1.getMap() == null) { layer1.setMap(map); }
+		 }
+	
+		 if (document.getElementById("1").checked == false) {
+			 layer1.setMap(null);  /*layersetoff*/
+		 }
+	
+	}
+	
+	if (tableidselections == 2){
+		 if (document.getElementById("2").checked == true) {
+		   if(layer2.getMap() == null) { layer2.setMap(map); }
+		 }
+	
+		 if (document.getElementById("2").checked == false) {
+			 layer2.setMap(null);
+		 }
+	
+	}
+
+}
+
+
+</script>
+
+
+<link href="style.css" rel="stylesheet" type="text/css">
+</head> 
+
+
+<body onLoad="initialize()"> 
+  <div id="map_canvas"></div>
+        <div id="legend"> 
+            
+            <form>
+
+            <input type="checkbox" value="1" id="1" onClick="changeLayer(this.value);">click me<br>
+            <input type="checkbox" value="2" id="2" onClick="changeLayer(this.value);">or me<br>
+        
+            </div>
+</form>
+
+
+</body> 
+</html> 
